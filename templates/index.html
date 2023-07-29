@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='main.js') }}">
+    </script>
+    <script src="https://kit.fontawesome.com/4a82536f30.js" crossorigin="anonymous"></script>
+    <title>EmojiSoul</title>
+</head>
+<body>
+    <!--logo-->
+    <div class="logo">
+    <img src="{{ url_for('static', filename='logo.png') }}" class="logo_image">
+    <h1 class="logo_text">EmojiSoul</h1></div>
+    <br>
+
+    <!--Header text and Quran image-->
+    <section>
+        <div class="container1">
+            <div class="head_text">Add emojis to your text <br> for free with the help of <br> AI in seconds<div class="sub_text">Let EmojiSoul help you to find the right emojis everytime</div></div>
+            <img src="{{ url_for('static', filename='EmojiSoul.png') }}" alt="EmojiSoul" class="EmojiSoul">
+        </div>  
+    </section>
+
+    <!--Question input box-->
+    <section id="two"><br><br>
+      <form action="/generate" method="POST">
+        <textarea type="text" id="text" name="text" placeholder="Type here..." rows="8"  oninput="this.style.height = ''; this.style.height = this.scrollHeight + 'px'"
+style="overflow: hidden; max-height: 1000px" required>{{ request.form.get('text') if request.form.get('text') else '' }}</textarea>
+<button type="submit" class="gen">Generate</button>
+    </form>
+    
+          <div class="loader"></div>
+
+       <div id="response">
+            {% if answer %}
+            <div class="chat-bubble">
+              <div class="bubble-content">
+                <p>{{ answer| safe }}</p>
+                <div class="bubble-buttons">
+                  <button class="copy-button">Copy</button>
+                  <button class="close-button">Close</button>
+                </div>
+                <div class="copy-notification hidden">Copied!</div>
+              </div>
+            </div>
+            {% endif %}  
+            </div>     
+    </section>
+<!--Blog-->
+    <section>
+      <h2 class="blog_heading">Blog</h2>
+      <!-- <div class="blog-card">
+        <div class="meta">
+          <div class="photo" style="background-image: url(static/post1.png)"></div>
+        </div>
+        <div class="description">
+          <h1>Why use emojis in social media
+          </h1>
+          <p> Créer du lien avec les producteurs de nos ingrédients naturels et donner un sens à chaque étape du processus de fabrication des cosmétiques. Découvrez comment Evaness est actrice de l’économie locale !</p>
+          <p class="read-more">
+            <a href="#">Read More</a>
+          </p>
+        </div>
+      </div> -->
+      <div class="blog-card alt">
+        <div class="meta">
+          <div class="photo" style="background-image: url(static/post2.png)"></div>
+          
+        </div>
+        <div class="description">
+          <h1>How to get better result from EmojiSoul (Must Read)
+          </h1>
+          <p>Are you ready to take your emoji game to the next level? EmojiSoul is here to elevate your text with expressive emojis, but to get the best results, there are a few essential tips and feature  </p>
+          <p class="read-more">
+            <a href="/blog/getting_better_results_emojisoul">Read More</a>
+          </p>
+        </div>
+      </div>
+    <!-- <div class="blog-card">
+        <div class="meta">
+          <div class="photo" style="background-image: url(static/post3.png)"></div>
+        </div>
+        <div class="description">
+          <h1>How to use emoji properly</h1>
+          <p> Limiter son impact environnemental dans l’univers cosmétique passe par des packagings responsables et plus respectueux de l’environnement. </p>
+          <p class="read-more">
+            <a href="#">Read More</a>
+          </p>
+        </div>
+      </div> -->
+    </section>
+
+    <!--FAQ-->
+    <main>
+      <section class="faq">
+        <h1>FAQ</h1>
+    
+        <div class="faq-container">
+          <details class="faq-box" open>
+            <summary class="faq-header">
+              What is EmojiSoul?
+            </summary>
+            <div class="faq-content">
+              <p>
+                EmojiSoul is an AI product powered by OpenAI's GPT-3.5 model. It is designed to add the most accurate and relevant emojis to text.
+              </p>
+            </div>
+          </details>
+    
+          <details class="faq-box">
+            <summary class="faq-header">
+              Is EmojiSoul for free?
+            </summary>
+            <div class="faq-content">
+              <p>
+                Yes, it is completely free for everyone!
+              </p>
+            </div>
+          </details>
+    
+          <details class="faq-box">
+            <summary class="faq-header">
+              Which languages does EmojiSoul support?
+            </summary>
+            <div class="faq-content">
+              <p>
+                EmojiSoul supports all languages. But, If the input language is English, you can expect the highest quality output from EmojiSoul. This means that if you enter text in any language, EmojiSoul will generate an output in that language, but the quality of the output may vary. 
+              </p>
+            </div>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    
+    <!--Bubbles Animation-->
+    <section>
+        <div class="bubbles">
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+          <div class="bubble"></div>
+        </div>
+    </section>
+    
+    
+</body>
+<footer>
+  <div class="footer_link">
+    <a href="/">Home</a>
+    <a href="/about">About Us</a>
+    <a href="/contact">Contact Us</a>
+    <a href="/faq">FAQ</a>
+    <a href="/blog">Blog</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/terms">Terms & Conditions</a>
+    </div>
+    <div class="social_icon">
+    <a href="https://twitter.com/emojisoulai" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+    <a href="https://www.facebook.com/emojisoul" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+    <a href="https://instagram.com/emojisoulai" target="_blank"><i class="fa-brands fa-square-instagram"></i></a>
+    <a href="https://threads.net/@emojisoulai" target="_blank"><img src="static/threads.svg" style="width: 30px; height: 30px;"></a>
+    </div>
+    <p>EmojiSoul © 2023</p>
+</footer>
+</html>
